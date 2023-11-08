@@ -1,6 +1,6 @@
 import React from "react";
 import uuid from "react-uuid";
-import '../styles/App.css'
+import "../styles/App.css";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 
 function Map({ onMapClick, markers, location }) {

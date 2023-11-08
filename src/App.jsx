@@ -7,7 +7,7 @@ import MapHeader from "./components/MapHeader";
 
 function App() {
   const [markers, setMarkers] = useState([]);
-  const [location, setLocation] = useState({ lat: 28.9445, lng: -82.0336 });
+  const [location, setLocation] = useState({ lat: 40.7128, lng: -74.006 });
 
   const linkedList = useRef(null);
   const ref = collection(firebase, "Quests");
@@ -101,7 +101,6 @@ function App() {
     <div className="container-fluid h-100">
       <div className="row d-flex flex-column">
         <div className="col-12 p-0">
-          
           <MapHeader getLocation={getLocation} markers={markers} />
         </div>
         <div className="col-12 px-0">
