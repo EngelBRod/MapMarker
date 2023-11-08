@@ -3,14 +3,33 @@ import { addDoc, collection, doc, updateDoc  } from "@firebase/firestore";
 import LinkedList from "./utilities/LinkedList";
 import firebase from "./utilities/Firebase";
 import Map from "./components/Map";
+import Header from "./components/Header";
+import MarkersInfo from "./components/MarkersInfo";
 
 function App() {
   const [markers, setMarkers] = useState([]);
+  const [location, setLocation] = useState({ lat: 28.9445, lng: -82.0336 })  
+  
   const linkedList = useRef(null);
   const ref= collection(firebase,"Quests");
   const currentCollection = useRef('5psoSkPhMS50TZgBU4lQ');
- 
 
+ 
+  const getLocation = (e)=>{
+    e.preventDefault();
+
+    const country = e.target.country.value;
+
+    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${country}.json?access_token=${import.meta.env.VITE_mapbox_key}&limit=1`)
+    .then((res)=> res.json())
+    .then((response)=>{
+      setLocation({
+        lat: response.features[0].center[1],
+        lng: response.features[0].center[0],
+      })
+    })
+
+  }
 
   const formatData = (quest)=>{
     let temp
@@ -78,7 +97,6 @@ function App() {
   
    const data = formatData(quest);
    sendData(data);
-
   };
 
 
@@ -87,7 +105,9 @@ function App() {
   return(
     <>
       <h1>Map Selector</h1>
-      <Map markers={markers} onMapClick={onMapClick} />
+      <Header getLocation={getLocation} />
+      <MarkersInfo markers={markers}/>
+      <Map markers={markers} onMapClick={onMapClick} location={location}/>
     </>
   );
 }

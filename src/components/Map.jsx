@@ -6,7 +6,8 @@ import {
   MarkerF,
 } from "@react-google-maps/api";
 
-function Map({onMapClick, markers}) {
+function Map({onMapClick, markers, location}) {
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
   });
@@ -15,7 +16,7 @@ function Map({onMapClick, markers}) {
     <div style={{ width: "100%", height: "90vh" }}>
       {isLoaded ? (
         <GoogleMap
-          center={{ lat: 40.3947365, lng: 49.6898045 }}
+          center={{...location}}
           zoom={10}
           mapContainerStyle={{
             width: "100%",
