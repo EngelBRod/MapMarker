@@ -2,7 +2,11 @@
   "extends": ["airbnb", "prettier"],
   "plugins": [],
   "rules":{
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "max-classes-per-file": [
+      "error",
+      { "ignoreExpressions": true, "max": 2 }
+  ]
   },
   "parserOptions": {
     "ecmaVersion": 2022,
