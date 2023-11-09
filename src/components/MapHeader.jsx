@@ -22,7 +22,7 @@ function MapHeader({ getLocation, markers }) {
             placeholder="New York"
             name="country"
           />
-          <Button type="button" className="btn btn-dark">
+          <Button type="submit" className="btn btn-dark">
             Location
           </Button>
         </form>
